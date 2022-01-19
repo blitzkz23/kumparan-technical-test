@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Kumparan Posting</string>
     <string name="kumparan_posting">Kumparan Posting</string>
-    <string name="by_user">By User</string>
+    <string name="by_user">By User %s</string>
 </resources>
