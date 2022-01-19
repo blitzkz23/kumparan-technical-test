@@ -21,9 +21,10 @@ class MainActivity : AppCompatActivity() {
 		val viewModel = obtainViewModel()
 
 		val postAdapter = PostAdapter()
-		activityMainBinding.progressBar.visibility = View.VISIBLE
+
 
 		///Observe posts data and show it in RecyclerView.
+		activityMainBinding.progressBar.visibility = View.VISIBLE
 		viewModel.getAllPost().observe(this, { posts ->
 			activityMainBinding.progressBar.visibility = View.GONE
 			postAdapter.setPost(posts)

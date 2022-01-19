@@ -3,6 +3,7 @@ package com.naufaldystd.kumparanposting.ui.details.post
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.naufaldystd.kumparanposting.data.Repository
+import com.naufaldystd.kumparanposting.data.source.remote.response.CommentResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
 
 class DetailPostViewModel(private val mRepository: Repository) : ViewModel() {
@@ -13,4 +14,6 @@ class DetailPostViewModel(private val mRepository: Repository) : ViewModel() {
 	}
 
 	fun getPostById(): LiveData<PostResponseItem> = mRepository.getPostById(postId)
+
+	fun getCommentsByPost(): LiveData<List<CommentResponseItem>> = mRepository.getCommentsByPost(postId)
 }

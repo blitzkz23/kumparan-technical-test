@@ -8,7 +8,8 @@ import com.naufaldystd.kumparanposting.di.Injection
 import com.naufaldystd.kumparanposting.ui.details.post.DetailPostViewModel
 import com.naufaldystd.kumparanposting.ui.main.MainViewModel
 
-class ViewModelFactory private constructor(private val mRepository: Repository) : ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory private constructor(private val mRepository: Repository) :
+	ViewModelProvider.NewInstanceFactory() {
 
 	@Suppress("UNCHECKED_CAST")
 	override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -25,7 +26,7 @@ class ViewModelFactory private constructor(private val mRepository: Repository) 
 
 	companion object {
 		@Volatile
-		private var instance: ViewModelFactory ?= null
+		private var instance: ViewModelFactory? = null
 
 		fun getInstance(context: Context): ViewModelFactory =
 			instance ?: synchronized(this) {

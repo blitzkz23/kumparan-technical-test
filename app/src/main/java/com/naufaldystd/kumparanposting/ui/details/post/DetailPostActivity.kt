@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.naufaldystd.kumparanposting.R
 import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
 import com.naufaldystd.kumparanposting.databinding.ActivityDetailPostBinding
@@ -26,13 +27,28 @@ class DetailPostActivity : AppCompatActivity() {
 
 		val viewModel = obtainViewModel()
 		viewModel.setSelectedPost(postId)
-		activityDetailPostBinding.progressBar.visibility = View.VISIBLE
 
-		///Observe detail post data and show it in RecyclerView.
+		///Observe detail post data and populate the views.
+		activityDetailPostBinding.progressBar.visibility = View.VISIBLE
 		viewModel.getPostById().observe(this, { post ->
 			activityDetailPostBinding.progressBar.visibility = View.GONE
 			populatePostDetail(post)
 		})
+
+
+		///Observe comment data and show it in RecyclerView.
+		val commentAdapter = CommentAdapter()
+		activityDetailPostBinding.progressBar2.visibility = View.VISIBLE
+		viewModel.getCommentsByPost().observe(this, { comments ->
+			activityDetailPostBinding.progressBar2.visibility = View.GONE
+			commentAdapter.setComment(comments)
+			commentAdapter.notifyDataSetChanged()
+		})
+		activityDetailPostBinding.rvComment.apply {
+			layoutManager = LinearLayoutManager(context)
+			setHasFixedSize(true)
+			adapter = commentAdapter
+		}
 	}
 
 	/**

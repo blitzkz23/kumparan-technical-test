@@ -1,5 +1,6 @@
 package com.naufaldystd.kumparanposting.api
 
+import com.naufaldystd.kumparanposting.data.source.remote.response.CommentResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
 import retrofit2.Call
 import retrofit2.http.GET
@@ -17,4 +18,10 @@ interface ApiService {
 		@Path("urlType") urlType: String,
 		@Path("id") id: Int
 	): Call<PostResponseItem>
+
+	@GET("{urlType}/{id}/comments")
+	fun getCommentByPost(
+		@Path("urlType") urlType: String,
+		@Path("id") id: Int,
+	): Call<List<CommentResponseItem>>
 }

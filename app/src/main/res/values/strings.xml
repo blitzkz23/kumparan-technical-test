@@ -4,4 +4,5 @@
     <string name="by_user">By User %s</string>
     <string name="body_message">Body Message</string>
     <string name="comments">Comments</string>
+    <string name="email_placeholder">useremail@gmail.com</string>
 </resources>

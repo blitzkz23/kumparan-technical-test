@@ -20,7 +20,8 @@ class PostAdapter : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 		this.listPost.addAll(posts)
 	}
 
-	class PostViewHolder(private val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
+	class PostViewHolder(private val binding: ItemPostBinding) :
+		RecyclerView.ViewHolder(binding.root) {
 		fun bind(post: PostResponseItem) {
 			with(binding) {
 				postTitle.text = post.title
@@ -38,7 +39,8 @@ class PostAdapter : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-		val itemPostBinding = ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+		val itemPostBinding =
+			ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 		return PostViewHolder(itemPostBinding)
 	}
 

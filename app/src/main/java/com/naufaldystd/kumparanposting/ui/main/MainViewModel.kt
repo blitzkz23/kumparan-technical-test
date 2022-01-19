@@ -7,6 +7,6 @@ import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseI
 
 class MainViewModel(private val mRepository: Repository) : ViewModel() {
 
-	fun getAllPost() : LiveData<List<PostResponseItem>> = mRepository.getAllPosts()
+	fun getAllPost(): LiveData<List<PostResponseItem>> = mRepository.getAllPosts()
 
 }
