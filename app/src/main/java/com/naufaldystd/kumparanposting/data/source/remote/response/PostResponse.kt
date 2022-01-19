@@ -1,24 +1,24 @@
-package com.naufaldystd.kumparanposting.data.source.remote.entity
+package com.naufaldystd.kumparanposting.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 
 data class PostResponse(
 
 	@field:SerializedName("PostResponse")
-	val postResponse: List<PostResponseItem?>? = null
+	val postResponse: List<PostResponseItem>
 )
 
 data class PostResponseItem(
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
 	@field:SerializedName("title")
-	val title: String? = null,
+	val title: String,
 
 	@field:SerializedName("body")
-	val body: String? = null,
+	val body: String,
 
 	@field:SerializedName("userId")
-	val userId: Int? = null
+	val userId: Int
 )
