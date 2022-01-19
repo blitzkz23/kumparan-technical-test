@@ -21,7 +21,9 @@ class MainActivity : AppCompatActivity() {
 		val viewModel = obtainViewModel()
 
 		val postAdapter = PostAdapter()
-		activityMainBinding.progressBar.visibility = View.GONE
+		activityMainBinding.progressBar.visibility = View.VISIBLE
+
+		///Observe posts data and show it in RecyclerView.
 		viewModel.getAllPost().observe(this, { posts ->
 			activityMainBinding.progressBar.visibility = View.GONE
 			postAdapter.setPost(posts)
@@ -35,6 +37,9 @@ class MainActivity : AppCompatActivity() {
 		}
 	}
 
+	/**
+	 * This function is used to obtain view model.
+	 */
 	private fun obtainViewModel(): MainViewModel {
 		val factory = ViewModelFactory.getInstance(this)
 		return ViewModelProvider(this, factory)[MainViewModel::class.java]

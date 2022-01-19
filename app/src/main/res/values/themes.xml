@@ -69,7 +69,7 @@
     </style>
 
     <style name="Text.SubText">
-        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="fontFamily">@font/poppins_medium</item>
         <item name="android:textSize">14sp</item>
         <item name="android:letterSpacing">-0.013</item>
         <item name="android:textColor">@color/sub_text</item>

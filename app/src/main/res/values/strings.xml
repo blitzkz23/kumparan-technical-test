@@ -2,4 +2,6 @@
     <string name="app_name">Kumparan Posting</string>
     <string name="kumparan_posting">Kumparan Posting</string>
     <string name="by_user">By User %s</string>
+    <string name="body_message">Body Message</string>
+    <string name="comments">Comments</string>
 </resources>

@@ -15,6 +15,6 @@ interface ApiService {
 	@GET("{urlType}/{id}")
 	fun getDataById(
 		@Path("urlType") urlType: String,
-		@Query("id") id: Int
+		@Path("id") id: Int
 	): Call<PostResponseItem>
 }

@@ -5,4 +5,5 @@ import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseI
 
 interface DataSource {
 	fun getAllPosts(): LiveData<List<PostResponseItem>>
+	fun getPostById(Id: Int): LiveData<PostResponseItem>
 }

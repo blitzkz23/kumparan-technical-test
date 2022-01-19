@@ -1,12 +1,14 @@
 package com.naufaldystd.kumparanposting.ui.main
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.naufaldystd.kumparanposting.R
 import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
 import com.naufaldystd.kumparanposting.databinding.ItemPostBinding
+import com.naufaldystd.kumparanposting.ui.details.post.DetailPostActivity
 
 class PostAdapter : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 	private var listPost = ArrayList<PostResponseItem>()
@@ -24,10 +26,12 @@ class PostAdapter : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 				postTitle.text = post.title
 				val userId = post.userId.toString()
 				postUser.text = itemView.context.getString(R.string.by_user, userId)
-				postMessage.text = post.body
+				postBody.text = post.body
 
 				itemView.setOnClickListener {
-
+					val intent = Intent(itemView.context, DetailPostActivity::class.java)
+					intent.putExtra(DetailPostActivity.EXTRA_POST, post.id)
+					itemView.context.startActivity(intent)
 				}
 			}
 		}

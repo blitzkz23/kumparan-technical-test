@@ -22,31 +22,22 @@
         android:layout_margin="@dimen/dimens_20dp">
 
         <TextView
-            android:id="@+id/post_title"
-            style="@style/Text.Header4"
-            android:maxLines="2"
-            android:ellipsize="end"
+            android:id="@+id/comment_user"
+            style="@style/Text.Header3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Title" />
-
-        <TextView
-            android:id="@+id/post_user"
-            style="@style/Text.SubText2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/post_title"
             tools:text="@string/by_user" />
 
         <TextView
-            android:id="@+id/post_body"
+            android:id="@+id/comment_body"
             style="@style/Text.Paragraph"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimens_8dp"
+            android:layout_marginTop="@dimen/dimens_16dp"
             android:maxLines="3"
             android:ellipsize="end"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/post_user"
+            app:layout_constraintTop_toBottomOf="@id/comment_user"
             tools:text="@string/body_message" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
