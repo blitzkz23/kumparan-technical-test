@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.naufaldystd.kumparanposting.data.source.remote.RemoteDataSource
-import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponse
 import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
 
 class Repository private constructor(private val remoteDataSource: RemoteDataSource) : DataSource {
@@ -26,8 +25,8 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
 				placeHolderPosts.postValue(postsList)
 			}
 
-			override fun onDataNotAvailable() {
-				Log.e(TAG, "onFailure: Posts failed to laod")
+			override fun onDataNotAvailable(e: Exception) {
+				Log.e(TAG, "onFailure: Posts failed to load $e")
 			}
 
 		})

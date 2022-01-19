@@ -10,27 +10,28 @@ import kotlinx.coroutines.launch
 import retrofit2.awaitResponse
 
 class RemoteDataSource {
+
 	fun getAllPosts(callback: ApiResultCallback) {
 		CoroutineScope(Dispatchers.IO).launch {
 			val client = ApiConfig.getApiService().getPlaceholderData("posts")
 			try {
 				val response = client.awaitResponse()
 				if(response.isSuccessful) {
-					response.body()?.postResponse?.let {
+					response.body()?.let {
 						callback.onPostDataReceived(it)
 					}
 				} else {
 					Log.d(TAG, "onResponse: ${response.message()}")
 				}
 			}catch(e: Exception) {
-				callback.onDataNotAvailable()
+				callback.onDataNotAvailable(e)
 			}
 		}
 	}
 
 	interface ApiResultCallback {
 		fun onPostDataReceived(responses: List<PostResponseItem>)
-		fun onDataNotAvailable()
+		fun onDataNotAvailable(e: Exception)
 	}
 
 	companion object {

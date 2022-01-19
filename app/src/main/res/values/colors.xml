@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="kumparan_blue">#FF00A5AF</color>
+    <color name="kumparan_blue_variant">#FF17848A</color>
+
+    <color name="black_text">#FF404040</color>
+    <color name="sub_text">#FFC7C9D9</color>
+    <color name="link_text">#FF6E5DE7</color>
 </resources>

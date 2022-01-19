@@ -6,8 +6,8 @@ import com.naufaldystd.kumparanposting.data.source.remote.RemoteDataSource
 
 object Injection {
 	fun provideRepository(context: Context): Repository {
-		val remoteRepository = RemoteDataSource.getInstance()
+		val remoteDataSource = RemoteDataSource.getInstance()
 
-		return Repository.getInstance(remoteRepository)
+		return Repository.getInstance(remoteDataSource)
 	}
 }
