@@ -3,6 +3,8 @@ package com.naufaldystd.kumparanposting.ui.details.photo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.animation.AnimationUtils
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
 import com.naufaldystd.kumparanposting.R
 import com.naufaldystd.kumparanposting.data.source.remote.response.PhotoResponseItem

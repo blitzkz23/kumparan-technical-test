@@ -1,9 +1,8 @@
 package com.naufaldystd.kumparanposting.ui.main
 
-import android.opengl.Visibility
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.naufaldystd.kumparanposting.R
@@ -37,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 			isNestedScrollingEnabled = false
 			adapter = postAdapter
 		}
+
 	}
 
 	/**

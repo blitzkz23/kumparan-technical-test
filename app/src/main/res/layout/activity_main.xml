@@ -45,7 +45,7 @@
             android:id="@+id/all_post"
             style="@style/Text.Header2"
             android:layout_width="0dp"
-            android:text="@string/newest_post"
+            android:text="@string/all_posts"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toTopOf="@id/guideline3" />
