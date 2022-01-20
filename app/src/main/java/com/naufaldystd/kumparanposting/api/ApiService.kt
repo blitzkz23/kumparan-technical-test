@@ -1,9 +1,6 @@
 package com.naufaldystd.kumparanposting.api
 
-import com.naufaldystd.kumparanposting.data.source.remote.response.AlbumResponseItem
-import com.naufaldystd.kumparanposting.data.source.remote.response.CommentResponseItem
-import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
-import com.naufaldystd.kumparanposting.data.source.remote.response.UserResponseItem
+import com.naufaldystd.kumparanposting.data.source.remote.response.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -38,4 +35,10 @@ interface ApiService {
 		@Path("urlType") urlType: String,
 		@Path("id") id: Int
 	): Call<UserResponseItem>
+
+	@GET("{urlType}/{id}/photos")
+	fun getPhotosByAlbum(
+		@Path("urlType") urlType: String,
+		@Path("id") id: Int,
+	): Call<List<PhotoResponseItem>>
 }

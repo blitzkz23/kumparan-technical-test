@@ -4,10 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.naufaldystd.kumparanposting.data.source.remote.RemoteDataSource
-import com.naufaldystd.kumparanposting.data.source.remote.response.AlbumResponseItem
-import com.naufaldystd.kumparanposting.data.source.remote.response.CommentResponseItem
-import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
-import com.naufaldystd.kumparanposting.data.source.remote.response.UserResponseItem
+import com.naufaldystd.kumparanposting.data.source.remote.response.*
 
 class Repository private constructor(private val remoteDataSource: RemoteDataSource) : DataSource {
 
@@ -143,6 +140,35 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
 
 		})
 		return placeholderAlbum
+	}
+
+	/**
+	 * Implement the interface function of data source to get photos data by album id and post the value as a live data.
+	 */
+	override fun getPhotosByAlbum(Id: Int): LiveData<List<PhotoResponseItem>> {
+		val placeholderPhoto = MutableLiveData<List<PhotoResponseItem>>()
+		remoteDataSource.getPhotosByAlbum(Id, object : RemoteDataSource.LoadPhotosByAlbum {
+			override fun onDataReceived(responses: List<PhotoResponseItem>) {
+				val photoList = ArrayList<PhotoResponseItem>()
+				for (response in responses) {
+					val photo = PhotoResponseItem(
+						response.albumId,
+						response.id,
+						response.title,
+						response.url,
+						response.thumbnailUrl
+					)
+					photoList.add(photo)
+				}
+				placeholderPhoto.postValue(photoList)
+			}
+
+			override fun onDataNotAvailable(e: Exception) {
+				Log.e(TAG, "onFailure: Photos failed to load. $e")
+			}
+
+		})
+		return placeholderPhoto
 	}
 
 	companion object {

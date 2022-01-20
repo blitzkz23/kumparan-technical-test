@@ -39,6 +39,7 @@ class DetailUserActivity : AppCompatActivity() {
 		viewModel.getUserById().observe(this, { userDetail ->
 			activityDetailUserBinding.progressBar3.visibility = View.GONE
 			populateUserDetail(userDetail)
+			supportActionBar?.title = "${userDetail.name}'s Profile"
 		})
 
 		///Observe albums data and show it in recyclerview.

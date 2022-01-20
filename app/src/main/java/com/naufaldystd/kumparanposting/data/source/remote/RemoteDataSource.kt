@@ -4,10 +4,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.naufaldystd.kumparanposting.api.ApiConfig
 import com.naufaldystd.kumparanposting.data.ApiResultCallback
-import com.naufaldystd.kumparanposting.data.source.remote.response.AlbumResponseItem
-import com.naufaldystd.kumparanposting.data.source.remote.response.CommentResponseItem
-import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
-import com.naufaldystd.kumparanposting.data.source.remote.response.UserResponseItem
+import com.naufaldystd.kumparanposting.data.source.remote.response.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -100,11 +97,32 @@ class RemoteDataSource {
 	}
 
 	/**
-	 * Fetch album data by post id from endpoints /users/id/albums and receive the responses in callback function.
+	 * Fetch albums data by post id from endpoints /users/id/albums and receive the responses in callback function.
 	 */
 	fun getAlbumsByUser(userId: Int, callback: LoadAlbumsByUserCallback) {
 		CoroutineScope(Dispatchers.IO).launch {
 			val client = ApiConfig.getApiService().getAlbumByUser("users", userId)
+			try {
+				val response = client.awaitResponse()
+				if (response.isSuccessful) {
+					response.body()?.let {
+						callback.onDataReceived(it)
+					}
+				} else {
+					Log.d(TAG, "onResponse: ${response.message()}")
+				}
+			} catch (e: Exception) {
+				callback.onDataNotAvailable(e)
+			}
+		}
+	}
+
+	/**
+	 * Fetch photos data by post id from endpoints /albums/id/photos and receive the responses in callback function.
+	 */
+	fun getPhotosByAlbum(albumId: Int, callback: LoadPhotosByAlbum) {
+		CoroutineScope(Dispatchers.IO).launch {
+			val client = ApiConfig.getApiService().getPhotosByAlbum("albums", albumId)
 			try {
 				val response = client.awaitResponse()
 				if (response.isSuccessful) {
@@ -125,6 +143,7 @@ class RemoteDataSource {
 	interface LoadCommentByPostCallback : ApiResultCallback<List<CommentResponseItem>>
 	interface LoadUserByIdCallback : ApiResultCallback<UserResponseItem>
 	interface LoadAlbumsByUserCallback: ApiResultCallback<List<AlbumResponseItem>>
+	interface LoadPhotosByAlbum: ApiResultCallback<List<PhotoResponseItem>>
 
 	companion object {
 		@Volatile

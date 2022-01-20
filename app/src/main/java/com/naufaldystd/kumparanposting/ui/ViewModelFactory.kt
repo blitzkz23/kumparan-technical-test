@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.naufaldystd.kumparanposting.data.Repository
 import com.naufaldystd.kumparanposting.di.Injection
+import com.naufaldystd.kumparanposting.ui.details.album.AlbumViewModel
 import com.naufaldystd.kumparanposting.ui.details.post.DetailPostViewModel
 import com.naufaldystd.kumparanposting.ui.details.user.DetailUserViewModel
 import com.naufaldystd.kumparanposting.ui.main.MainViewModel
@@ -23,6 +24,9 @@ class ViewModelFactory private constructor(private val mRepository: Repository) 
 			}
 			modelClass.isAssignableFrom(DetailUserViewModel::class.java) -> {
 				DetailUserViewModel(mRepository) as T
+			}
+			modelClass.isAssignableFrom(AlbumViewModel::class.java) -> {
+				AlbumViewModel(mRepository) as T
 			}
 			else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
 		}

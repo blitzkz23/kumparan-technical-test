@@ -1,10 +1,12 @@
 package com.naufaldystd.kumparanposting.ui.details.user
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.naufaldystd.kumparanposting.data.source.remote.response.AlbumResponseItem
 import com.naufaldystd.kumparanposting.databinding.ItemAlbumBinding
+import com.naufaldystd.kumparanposting.ui.details.album.AlbumDetailActivity
 
 class AlbumAdapter : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 	private val listAlbums = ArrayList<AlbumResponseItem>()
@@ -22,6 +24,12 @@ class AlbumAdapter : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 		RecyclerView.ViewHolder(binding.root) {
 		fun bind(album: AlbumResponseItem) {
 			binding.albumUser.text = album.title
+			itemView.setOnClickListener {
+				val intent = Intent(itemView.context, AlbumDetailActivity::class.java)
+				intent.putExtra(AlbumDetailActivity.EXTRA_ALBUM, album.id)
+				intent.putExtra(AlbumDetailActivity.EXTRA_ALBUM_NAME, album.title)
+				itemView.context.startActivity(intent)
+			}
 		}
 	}
 

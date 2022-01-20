@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:usesCleartextTraffic="true"
+        android:largeHeap="true"
         android:allowBackup="true"
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,9 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KumparanPosting">
         <activity
+            android:name=".ui.details.album.AlbumDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.details.user.DetailUserActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".ui.details.post.DetailPostActivity"
             android:exported="false">
