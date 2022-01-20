@@ -14,6 +14,9 @@ class PostAdapter : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 	private var listPost = ArrayList<PostResponseItem>()
 	private lateinit var context: Context
 
+	/**
+	 * This function will be used to set the adapter's data from activity
+	 */
 	fun setPost(posts: List<PostResponseItem>?) {
 		if (posts == null) return
 		this.listPost.clear()

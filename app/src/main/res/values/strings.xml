@@ -5,4 +5,7 @@
     <string name="body_message">Body Message</string>
     <string name="comments">Comments</string>
     <string name="email_placeholder">useremail@gmail.com</string>
+    <string name="username">Username</string>
+    <string name="name">User\'s Name</string>
+    <string name="title">Title</string>
 </resources>

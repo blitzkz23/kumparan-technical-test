@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_white"
-    tools:context=".ui.details.post.DetailPostActivity">
+    tools:context=".ui.details.user.DetailUserActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -37,73 +36,60 @@
         app:layout_constraintGuide_end="@dimen/dimens_20dp" />
 
     <TextView
-        android:id="@+id/post_title"
-        style="@style/Text.Header3"
+        android:id="@+id/user_name"
+        style="@style/Text.Header2"
         android:layout_width="0dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toTopOf="@id/guideline3"
-        tools:text="@string/title" />
+        tools:text="@string/name" />
 
     <TextView
-        android:id="@+id/post_user"
-        style="@style/Text.SubText"
-        android:layout_width="0dp"
-        android:textColor="@color/link_text"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        android:id="@+id/user_username"
+        style="@style/Text.SubHeader2"
         app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/post_title"
-        tools:text="@string/by_user" />
+        app:layout_constraintTop_toBottomOf="@id/user_name"
+        tools:text="@string/username" />
 
     <TextView
-        android:id="@+id/post_body"
-        style="@style/Text.Paragraph"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimens_16dp"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        android:id="@+id/user_email"
+        style="@style/Text.Header4"
+        android:layout_marginTop="@dimen/dimens_8dp"
         app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/post_user"
-        tools:text="@string/body_message" />
+        app:layout_constraintTop_toBottomOf="@id/user_username"
+        android:drawablePadding="@dimen/dimens_8dp"
+        tools:text="@string/email_placeholder"
+        app:drawableStartCompat="@drawable/ic_baseline_email_24" />
 
     <TextView
-        android:id="@+id/comments"
-        style="@style/Text.Header3"
-        android:layout_marginTop="@dimen/dimens_16dp"
-        android:text="@string/comments"
+        android:id="@+id/user_address"
+        style="@style/Text.Header4"
+        android:layout_marginTop="@dimen/dimens_8dp"
         app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/post_body" />
+        app:layout_constraintTop_toBottomOf="@id/user_email"
+        android:drawablePadding="@dimen/dimens_8dp"
+        tools:text="Kulas Light, Gwenborough"
+        app:drawableStartCompat="@drawable/ic_baseline_location_on_24" />
+
+    <TextView
+        android:id="@+id/user_company"
+        style="@style/Text.Header4"
+        android:layout_marginTop="@dimen/dimens_8dp"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/user_address"
+        android:drawablePadding="@dimen/dimens_8dp"
+        tools:text="Romaguera-Crona"
+        app:drawableStartCompat="@drawable/ic_baseline_business_24" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_comment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dimens_8dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/comments" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/rv_comment" />
+        app:layout_constraintTop_toBottomOf="@+id/user_company" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

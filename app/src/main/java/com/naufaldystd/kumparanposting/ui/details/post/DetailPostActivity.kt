@@ -1,7 +1,10 @@
 package com.naufaldystd.kumparanposting.ui.details.post
 
+import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,8 +12,10 @@ import com.naufaldystd.kumparanposting.R
 import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
 import com.naufaldystd.kumparanposting.databinding.ActivityDetailPostBinding
 import com.naufaldystd.kumparanposting.ui.ViewModelFactory
+import com.naufaldystd.kumparanposting.ui.details.user.DetailUserActivity
 
 class DetailPostActivity : AppCompatActivity() {
+	///Binding initalization using lazy
 	private val activityDetailPostBinding: ActivityDetailPostBinding by lazy {
 		ActivityDetailPostBinding.inflate(layoutInflater)
 	}
@@ -21,6 +26,7 @@ class DetailPostActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(activityDetailPostBinding.root)
 
+		///Set back button in toolbar
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		postId = intent.getIntExtra(EXTRA_POST, 0)
@@ -29,12 +35,13 @@ class DetailPostActivity : AppCompatActivity() {
 		viewModel.setSelectedPost(postId)
 
 		///Observe detail post data and populate the views.
+		var userId = 0
 		activityDetailPostBinding.progressBar.visibility = View.VISIBLE
 		viewModel.getPostById().observe(this, { post ->
 			activityDetailPostBinding.progressBar.visibility = View.GONE
 			populatePostDetail(post)
+			userId = post.userId
 		})
-
 
 		///Observe comment data and show it in RecyclerView.
 		val commentAdapter = CommentAdapter()
@@ -44,10 +51,19 @@ class DetailPostActivity : AppCompatActivity() {
 			commentAdapter.setComment(comments)
 			commentAdapter.notifyDataSetChanged()
 		})
+
+		///RecyclerView setup
 		activityDetailPostBinding.rvComment.apply {
 			layoutManager = LinearLayoutManager(context)
 			setHasFixedSize(true)
 			adapter = commentAdapter
+		}
+
+		///Navigate to user detail page
+		activityDetailPostBinding.postUser.setOnClickListener {
+			val intent = Intent(this, DetailUserActivity::class.java)
+			intent.putExtra(DetailUserActivity.EXTRA_USER, userId)
+			startActivity(intent)
 		}
 	}
 

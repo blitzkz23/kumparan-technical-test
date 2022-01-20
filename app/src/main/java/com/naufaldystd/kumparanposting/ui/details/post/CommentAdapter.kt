@@ -10,6 +10,9 @@ import com.naufaldystd.kumparanposting.ui.details.post.CommentAdapter.CommentVie
 class CommentAdapter : RecyclerView.Adapter<CommentViewHolder>() {
 	private var listComment = ArrayList<CommentResponseItem>()
 
+	/**
+	 * This function will be used to set the adapter's data from activity
+	 */
 	fun setComment(comment: List<CommentResponseItem>?) {
 		if (comment == null) return
 		this.listComment.clear()

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.naufaldystd.kumparanposting.data.source.remote.RemoteDataSource
 import com.naufaldystd.kumparanposting.data.source.remote.response.CommentResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
+import com.naufaldystd.kumparanposting.data.source.remote.response.UserResponseItem
 
 class Repository private constructor(private val remoteDataSource: RemoteDataSource) : DataSource {
 
@@ -13,7 +14,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
 	 * Implement the interface function of remote data source to get all posts and post the value as a live data.
 	 */
 	override fun getAllPosts(): LiveData<List<PostResponseItem>> {
-		val placeHolderPosts = MutableLiveData<List<PostResponseItem>>()
+		val placeholderPosts = MutableLiveData<List<PostResponseItem>>()
 		remoteDataSource.getAllPosts(object : RemoteDataSource.LoadPostsCallback {
 			override fun onDataReceived(responses: List<PostResponseItem>) {
 				val postsList = ArrayList<PostResponseItem>()
@@ -26,7 +27,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
 					)
 					postsList.add(post)
 				}
-				placeHolderPosts.postValue(postsList)
+				placeholderPosts.postValue(postsList)
 			}
 
 			override fun onDataNotAvailable(e: Exception) {
@@ -34,14 +35,14 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
 			}
 
 		})
-		return placeHolderPosts
+		return placeholderPosts
 	}
 
 	/**
 	 * Implement the interface function of remote data source to get post by id and post the value as a live data.
 	 */
 	override fun getPostById(Id: Int): LiveData<PostResponseItem> {
-		val placeHolderPost = MutableLiveData<PostResponseItem>()
+		val placeholderPost = MutableLiveData<PostResponseItem>()
 		remoteDataSource.getPostById(Id, object : RemoteDataSource.LoadPostByIdCallback {
 			override fun onDataReceived(responses: PostResponseItem) {
 				val postResult = PostResponseItem(
@@ -50,22 +51,22 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
 					responses.body,
 					responses.userId
 				)
-				placeHolderPost.postValue(postResult)
+				placeholderPost.postValue(postResult)
 			}
 
 			override fun onDataNotAvailable(e: Exception) {
-				Log.e(TAG, "onFailure: TvShow failed to load. $e")
+				Log.e(TAG, "onFailure: Post failed to load. $e")
 			}
 
 		})
-		return placeHolderPost
+		return placeholderPost
 	}
 
 	/**
 	 * Implement the interface function of remote data source to get comment data by post id and post the value as a live data.
 	 */
 	override fun getCommentsByPost(postId: Int): LiveData<List<CommentResponseItem>> {
-		val placeHolderComments = MutableLiveData<List<CommentResponseItem>>()
+		val placeholderComments = MutableLiveData<List<CommentResponseItem>>()
 		remoteDataSource.getCommentsByPost(
 			postId,
 			object : RemoteDataSource.LoadCommentByPostCallback {
@@ -81,15 +82,42 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
 						)
 						commentList.add(comment)
 					}
-					placeHolderComments.postValue(commentList)
+					placeholderComments.postValue(commentList)
 				}
 
 				override fun onDataNotAvailable(e: Exception) {
-					Log.e(TAG, "onFailure: TvShow failed to load. $e")
+					Log.e(TAG, "onFailure: Comments failed to load. $e")
 				}
 
 			})
-		return placeHolderComments
+		return placeholderComments
+	}
+
+	/**
+	 * Implement the interface function of remote data source to get user data by id and post the value as a live data.
+	 */
+	override fun getUserById(Id: Int): LiveData<UserResponseItem> {
+		val placeholderUser = MutableLiveData<UserResponseItem>()
+		remoteDataSource.getUserById(Id, object : RemoteDataSource.LoadUserByIdCallback {
+			override fun onDataReceived(responses: UserResponseItem) {
+				val userResult = UserResponseItem(
+					responses.address,
+					responses.phone,
+					responses.name,
+					responses.company,
+					responses.id,
+					responses.email,
+					responses.username
+				)
+				placeholderUser.postValue(userResult)
+			}
+
+			override fun onDataNotAvailable(e: Exception) {
+				Log.e(TAG, "onFailure: Users failed to load. $e")
+			}
+
+		})
+		return placeholderUser
 	}
 
 	companion object {

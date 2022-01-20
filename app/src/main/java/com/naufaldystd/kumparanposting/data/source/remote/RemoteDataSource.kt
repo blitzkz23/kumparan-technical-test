@@ -6,6 +6,7 @@ import com.naufaldystd.kumparanposting.api.ApiConfig
 import com.naufaldystd.kumparanposting.data.ApiResultCallback
 import com.naufaldystd.kumparanposting.data.source.remote.response.CommentResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
+import com.naufaldystd.kumparanposting.data.source.remote.response.UserResponseItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,7 +40,7 @@ class RemoteDataSource {
 	 */
 	fun getPostById(id: Int, callback: LoadPostByIdCallback) {
 		CoroutineScope(Dispatchers.IO).launch {
-			val client = ApiConfig.getApiService().getDataById("posts", id)
+			val client = ApiConfig.getApiService().getPostById("posts", id)
 			try {
 				val response = client.awaitResponse()
 				if (response.isSuccessful) {
@@ -76,9 +77,28 @@ class RemoteDataSource {
 		}
 	}
 
+	fun getUserById(id: Int, callback: LoadUserByIdCallback) {
+		CoroutineScope(Dispatchers.IO).launch {
+			val client = ApiConfig.getApiService().getUserById("users", id)
+			try {
+				val response = client.awaitResponse()
+				if (response.isSuccessful) {
+					response.body()?.let {
+						callback.onDataReceived(it)
+					}
+				} else {
+					Log.d(TAG, "onResponse: ${response.message()}")
+				}
+			} catch (e: Exception) {
+				callback.onDataNotAvailable(e)
+			}
+		}
+	}
+
 	interface LoadPostsCallback : ApiResultCallback<List<PostResponseItem>>
 	interface LoadPostByIdCallback : ApiResultCallback<PostResponseItem>
 	interface LoadCommentByPostCallback : ApiResultCallback<List<CommentResponseItem>>
+	interface LoadUserByIdCallback : ApiResultCallback<UserResponseItem>
 
 	companion object {
 		@Volatile
