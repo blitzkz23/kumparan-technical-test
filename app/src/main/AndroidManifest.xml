@@ -7,10 +7,10 @@
     <application
         android:allowBackup="true"
         android:fullBackupOnly="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_kumparan_posting"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_kumparan_posting_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KumparanPosting"
         android:usesCleartextTraffic="true">
