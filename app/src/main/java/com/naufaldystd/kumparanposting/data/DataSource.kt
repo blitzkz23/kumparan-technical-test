@@ -1,6 +1,7 @@
 package com.naufaldystd.kumparanposting.data
 
 import androidx.lifecycle.LiveData
+import com.naufaldystd.kumparanposting.data.source.remote.response.AlbumResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.CommentResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.UserResponseItem
@@ -10,4 +11,5 @@ interface DataSource {
 	fun getPostById(Id: Int): LiveData<PostResponseItem>
 	fun getCommentsByPost(postId: Int): LiveData<List<CommentResponseItem>>
 	fun getUserById(Id: Int): LiveData<UserResponseItem>
+	fun getAlbumsByUser(Id: Int): LiveData<List<AlbumResponseItem>>
 }

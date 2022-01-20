@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.naufaldystd.kumparanposting.api.ApiConfig
 import com.naufaldystd.kumparanposting.data.ApiResultCallback
+import com.naufaldystd.kumparanposting.data.source.remote.response.AlbumResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.CommentResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.UserResponseItem
@@ -77,9 +78,33 @@ class RemoteDataSource {
 		}
 	}
 
+	/**
+	 * Fetch user data by user id from endpoints /users/id and receive the responses in callback function.
+	 */
 	fun getUserById(id: Int, callback: LoadUserByIdCallback) {
 		CoroutineScope(Dispatchers.IO).launch {
 			val client = ApiConfig.getApiService().getUserById("users", id)
+			try {
+				val response = client.awaitResponse()
+				if (response.isSuccessful) {
+					response.body()?.let {
+						callback.onDataReceived(it)
+					}
+				} else {
+					Log.d(TAG, "onResponse: ${response.message()}")
+				}
+			} catch (e: Exception) {
+				callback.onDataNotAvailable(e)
+			}
+		}
+	}
+
+	/**
+	 * Fetch album data by post id from endpoints /users/id/albums and receive the responses in callback function.
+	 */
+	fun getAlbumsByUser(userId: Int, callback: LoadAlbumsByUserCallback) {
+		CoroutineScope(Dispatchers.IO).launch {
+			val client = ApiConfig.getApiService().getAlbumByUser("users", userId)
 			try {
 				val response = client.awaitResponse()
 				if (response.isSuccessful) {
@@ -99,6 +124,7 @@ class RemoteDataSource {
 	interface LoadPostByIdCallback : ApiResultCallback<PostResponseItem>
 	interface LoadCommentByPostCallback : ApiResultCallback<List<CommentResponseItem>>
 	interface LoadUserByIdCallback : ApiResultCallback<UserResponseItem>
+	interface LoadAlbumsByUserCallback: ApiResultCallback<List<AlbumResponseItem>>
 
 	companion object {
 		@Volatile

@@ -8,4 +8,6 @@
     <string name="username">Username</string>
     <string name="name">User\'s Name</string>
     <string name="title">Title</string>
+    <string name="album_placeholder">Album Name</string>
+    <string name="albums">Albums</string>
 </resources>

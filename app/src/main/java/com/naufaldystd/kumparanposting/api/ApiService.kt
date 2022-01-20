@@ -1,5 +1,6 @@
 package com.naufaldystd.kumparanposting.api
 
+import com.naufaldystd.kumparanposting.data.source.remote.response.AlbumResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.CommentResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.UserResponseItem
@@ -25,6 +26,12 @@ interface ApiService {
 		@Path("urlType") urlType: String,
 		@Path("id") id: Int,
 	): Call<List<CommentResponseItem>>
+
+	@GET("{urlType}/{id}/albums")
+	fun getAlbumByUser(
+		@Path("urlType") urlType: String,
+		@Path("id") id: Int,
+	): Call<List<AlbumResponseItem>>
 
 	@GET("{urlType}/{id}")
 	fun getUserById(

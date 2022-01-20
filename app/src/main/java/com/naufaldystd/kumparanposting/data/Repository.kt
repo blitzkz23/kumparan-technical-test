@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.naufaldystd.kumparanposting.data.source.remote.RemoteDataSource
+import com.naufaldystd.kumparanposting.data.source.remote.response.AlbumResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.CommentResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.PostResponseItem
 import com.naufaldystd.kumparanposting.data.source.remote.response.UserResponseItem
@@ -11,7 +12,7 @@ import com.naufaldystd.kumparanposting.data.source.remote.response.UserResponseI
 class Repository private constructor(private val remoteDataSource: RemoteDataSource) : DataSource {
 
 	/**
-	 * Implement the interface function of remote data source to get all posts and post the value as a live data.
+	 * Implement the interface function of data source to get all posts and post the value as a live data.
 	 */
 	override fun getAllPosts(): LiveData<List<PostResponseItem>> {
 		val placeholderPosts = MutableLiveData<List<PostResponseItem>>()
@@ -39,7 +40,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
 	}
 
 	/**
-	 * Implement the interface function of remote data source to get post by id and post the value as a live data.
+	 * Implement the interface function of data source to get post by id and post the value as a live data.
 	 */
 	override fun getPostById(Id: Int): LiveData<PostResponseItem> {
 		val placeholderPost = MutableLiveData<PostResponseItem>()
@@ -63,7 +64,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
 	}
 
 	/**
-	 * Implement the interface function of remote data source to get comment data by post id and post the value as a live data.
+	 * Implement the interface function of data source to get comment data by post id and post the value as a live data.
 	 */
 	override fun getCommentsByPost(postId: Int): LiveData<List<CommentResponseItem>> {
 		val placeholderComments = MutableLiveData<List<CommentResponseItem>>()
@@ -94,7 +95,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
 	}
 
 	/**
-	 * Implement the interface function of remote data source to get user data by id and post the value as a live data.
+	 * Implement the interface function of data source to get user data by id and post the value as a live data.
 	 */
 	override fun getUserById(Id: Int): LiveData<UserResponseItem> {
 		val placeholderUser = MutableLiveData<UserResponseItem>()
@@ -118,6 +119,30 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
 
 		})
 		return placeholderUser
+	}
+
+	/**
+	 * Implement the interface function of data source to get albums data by user id and post the value as a live data.
+	 */
+	override fun getAlbumsByUser(Id: Int): LiveData<List<AlbumResponseItem>> {
+		val placeholderAlbum = MutableLiveData<List<AlbumResponseItem>>()
+		remoteDataSource.getAlbumsByUser(Id, object : RemoteDataSource.LoadAlbumsByUserCallback {
+			override fun onDataReceived(responses: List<AlbumResponseItem>) {
+				val albumList = ArrayList<AlbumResponseItem>()
+				for (response in responses) {
+					val album = AlbumResponseItem(response.id, response.title, response.userId)
+					albumList.add(album)
+				}
+				placeholderAlbum.postValue(albumList)
+
+			}
+
+			override fun onDataNotAvailable(e: Exception) {
+				Log.e(TAG, "onFailure: Albums failed to load. $e")
+			}
+
+		})
+		return placeholderAlbum
 	}
 
 	companion object {

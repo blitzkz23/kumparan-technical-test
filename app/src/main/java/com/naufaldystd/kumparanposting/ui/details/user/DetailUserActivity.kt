@@ -4,9 +4,10 @@ import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.naufaldystd.kumparanposting.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.naufaldystd.kumparanposting.data.source.remote.response.UserResponseItem
 import com.naufaldystd.kumparanposting.databinding.ActivityDetailUserBinding
 import com.naufaldystd.kumparanposting.ui.ViewModelFactory
@@ -27,17 +28,34 @@ class DetailUserActivity : AppCompatActivity() {
 
 		userId = intent.getIntExtra(EXTRA_USER, 0)
 
-		///Set back button in toolbar
+		///Set back button in toolbar.
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		val viewModel = obtainViewModel()
 		viewModel.setSelectedUser(userId)
 
-		///Observe user data and populate the views
+		///Observe user data and populate the views.
+		activityDetailUserBinding.progressBar3.visibility = View.VISIBLE
 		viewModel.getUserById().observe(this, { userDetail ->
+			activityDetailUserBinding.progressBar3.visibility = View.GONE
 			populateUserDetail(userDetail)
 		})
 
+		///Observe albums data and show it in recyclerview.
+		val albumAdapter = AlbumAdapter()
+		activityDetailUserBinding.progressBar4.visibility = View.VISIBLE
+		viewModel.getAlbumsByUser().observe(this, { albums ->
+			activityDetailUserBinding.progressBar4.visibility = View.GONE
+			albumAdapter.setAlbum(albums)
+			albumAdapter.notifyDataSetChanged()
+		})
+
+		///RecyclerView setup
+		activityDetailUserBinding.rvAlbums.apply {
+			layoutManager = LinearLayoutManager(context)
+			setHasFixedSize(true)
+			adapter = albumAdapter
+		}
 	}
 
 	/**
