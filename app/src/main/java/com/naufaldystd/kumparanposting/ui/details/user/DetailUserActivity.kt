@@ -55,6 +55,7 @@ class DetailUserActivity : AppCompatActivity() {
 		activityDetailUserBinding.rvAlbums.apply {
 			layoutManager = LinearLayoutManager(context)
 			setHasFixedSize(true)
+			isNestedScrollingEnabled = false
 			adapter = albumAdapter
 		}
 	}
@@ -69,7 +70,7 @@ class DetailUserActivity : AppCompatActivity() {
 				Log.d(TAG, "COK ${userDetail.name}")
 				userUsername.text = userDetail.username
 				userEmail.text = userDetail.email
-				userAddress.text = userDetail.address.street + ", " + userDetail.address.city
+				userAddress.text = "${userDetail.address.street}, ${userDetail.address.city}"
 				userCompany.text = userDetail.company.name
 			}
 		}

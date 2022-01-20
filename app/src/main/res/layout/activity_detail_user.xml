@@ -1,128 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_white"
-    tools:context=".ui.details.user.DetailUserActivity">
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/dimens_20dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_white"
+        tools:context=".ui.details.user.DetailUserActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/dimens_20dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/dimens_20dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="@dimen/dimens_20dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/dimens_20dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="@dimen/dimens_20dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/dimens_20dp" />
 
-    <TextView
-        android:id="@+id/user_name"
-        style="@style/Text.Header2"
-        android:layout_width="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toTopOf="@id/guideline3"
-        tools:text="@string/name" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/dimens_20dp" />
 
-    <TextView
-        android:id="@+id/user_username"
-        style="@style/Text.SubHeader2"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/user_name"
-        tools:text="@string/username" />
+        <TextView
+            android:id="@+id/user_name"
+            style="@style/Text.Header2"
+            android:layout_width="0dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/guideline3"
+            tools:text="@string/name" />
 
-    <TextView
-        android:id="@+id/user_email"
-        style="@style/Text.Header4"
-        android:layout_marginTop="@dimen/dimens_8dp"
-        android:drawablePadding="@dimen/dimens_8dp"
-        app:drawableStartCompat="@drawable/ic_baseline_email_24"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/user_username"
-        tools:text="@string/email_placeholder" />
+        <TextView
+            android:id="@+id/user_username"
+            style="@style/Text.SubHeader2"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/user_name"
+            tools:text="@string/username" />
 
-    <TextView
-        android:id="@+id/user_address"
-        style="@style/Text.Header4"
-        android:layout_marginTop="@dimen/dimens_8dp"
-        android:drawablePadding="@dimen/dimens_8dp"
-        app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/user_email"
-        tools:text="Kulas Light, Gwenborough" />
+        <TextView
+            android:id="@+id/user_email"
+            style="@style/Text.Header4"
+            android:layout_marginTop="@dimen/dimens_8dp"
+            android:drawablePadding="@dimen/dimens_8dp"
+            app:drawableStartCompat="@drawable/ic_baseline_email_24"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/user_username"
+            tools:text="@string/email_placeholder" />
 
-    <TextView
-        android:id="@+id/user_company"
-        style="@style/Text.Header4"
-        android:layout_marginTop="@dimen/dimens_8dp"
-        android:drawablePadding="@dimen/dimens_8dp"
-        app:drawableStartCompat="@drawable/ic_baseline_business_24"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/user_address"
-        tools:text="Romaguera-Crona" />
+        <TextView
+            android:id="@+id/user_address"
+            style="@style/Text.Header4"
+            android:layout_marginTop="@dimen/dimens_8dp"
+            android:drawablePadding="@dimen/dimens_8dp"
+            app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/user_email"
+            tools:text="Kulas Light, Gwenborough" />
 
-    <TextView
-        android:id="@+id/albums"
-        style="@style/Text.Header3"
-        android:layout_marginTop="@dimen/dimens_20dp"
-        android:drawablePadding="@dimen/dimens_8dp"
-        android:text="@string/albums"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/user_company" />
+        <TextView
+            android:id="@+id/user_company"
+            style="@style/Text.Header4"
+            android:layout_marginTop="@dimen/dimens_8dp"
+            android:drawablePadding="@dimen/dimens_8dp"
+            app:drawableStartCompat="@drawable/ic_baseline_business_24"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/user_address"
+            tools:text="Romaguera-Crona" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_albums"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/albums"
-        app:layout_constraintVertical_bias="1.0"
-        tools:listitem="@layout/item_album" />
+        <TextView
+            android:id="@+id/albums"
+            style="@style/Text.Header3"
+            android:layout_marginTop="@dimen/dimens_20dp"
+            android:drawablePadding="@dimen/dimens_8dp"
+            android:text="@string/albums"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/user_company" />
 
-    <ProgressBar
-        android:id="@+id/progressBar3"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_albums"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/albums"
+            app:layout_constraintVertical_bias="1.0"
+            tools:listitem="@layout/item_album" />
 
-    <ProgressBar
-        android:id="@+id/progressBar4"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/rv_albums" />
+        <ProgressBar
+            android:id="@+id/progressBar3"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar4"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/rv_albums" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

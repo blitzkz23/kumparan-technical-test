@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 		activityMainBinding.rvPost.apply {
 			layoutManager = LinearLayoutManager(context)
 			setHasFixedSize(true)
+			isNestedScrollingEnabled = false
 			adapter = postAdapter
 		}
 	}

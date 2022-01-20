@@ -11,4 +11,6 @@
     <string name="album_placeholder">Album Name</string>
     <string name="albums">Albums</string>
     <string name="thumnail_image">thumnail_image</string>
+    <string name="newest_post">Postingan Terbaru</string>
+    <string name="home_subheader">Halaman utama akan menampilkan postingan dari seluruh pengguna</string>
 </resources>

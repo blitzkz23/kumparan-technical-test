@@ -56,6 +56,7 @@ class DetailPostActivity : AppCompatActivity() {
 		activityDetailPostBinding.rvComment.apply {
 			layoutManager = LinearLayoutManager(context)
 			setHasFixedSize(true)
+			isNestedScrollingEnabled = false
 			adapter = commentAdapter
 		}
 
