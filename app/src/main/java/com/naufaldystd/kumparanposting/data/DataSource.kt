@@ -10,4 +10,5 @@ interface DataSource {
 	fun getUserById(Id: Int): LiveData<UserResponseItem>
 	fun getAlbumsByUser(Id: Int): LiveData<List<AlbumResponseItem>>
 	fun getPhotosByAlbum(Id: Int): LiveData<List<PhotoResponseItem>>
+	fun getPhotosById(Id: Int): LiveData<PhotoResponseItem>
 }

@@ -41,4 +41,10 @@ interface ApiService {
 		@Path("urlType") urlType: String,
 		@Path("id") id: Int,
 	): Call<List<PhotoResponseItem>>
+
+	@GET("{urlType}/{id}")
+	fun getPhotoById(
+		@Path("urlType") urlType: String,
+		@Path("id") id: Int,
+	): Call<PhotoResponseItem>
 }

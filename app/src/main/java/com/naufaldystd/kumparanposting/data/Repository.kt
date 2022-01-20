@@ -146,8 +146,8 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
 	 * Implement the interface function of data source to get photos data by album id and post the value as a live data.
 	 */
 	override fun getPhotosByAlbum(Id: Int): LiveData<List<PhotoResponseItem>> {
-		val placeholderPhoto = MutableLiveData<List<PhotoResponseItem>>()
-		remoteDataSource.getPhotosByAlbum(Id, object : RemoteDataSource.LoadPhotosByAlbum {
+		val placeholderPhotos = MutableLiveData<List<PhotoResponseItem>>()
+		remoteDataSource.getPhotosByAlbum(Id, object : RemoteDataSource.LoadPhotosByAlbumCallback {
 			override fun onDataReceived(responses: List<PhotoResponseItem>) {
 				val photoList = ArrayList<PhotoResponseItem>()
 				for (response in responses) {
@@ -160,11 +160,36 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
 					)
 					photoList.add(photo)
 				}
-				placeholderPhoto.postValue(photoList)
+				placeholderPhotos.postValue(photoList)
 			}
 
 			override fun onDataNotAvailable(e: Exception) {
 				Log.e(TAG, "onFailure: Photos failed to load. $e")
+			}
+
+		})
+		return placeholderPhotos
+	}
+
+	/**
+	 * Implement the interface function of data source to get photos data by id and post the value as a live data.
+	 */
+	override fun getPhotosById(Id: Int): LiveData<PhotoResponseItem> {
+		val placeholderPhoto = MutableLiveData<PhotoResponseItem>()
+		remoteDataSource.getPhotoById(Id, object : RemoteDataSource.LoadPhotoByIdCallback {
+			override fun onDataReceived(responses: PhotoResponseItem) {
+				val photo = PhotoResponseItem(
+					responses.albumId,
+					responses.id,
+					responses.title,
+					responses.url,
+					responses.thumbnailUrl
+				)
+				placeholderPhoto.postValue(photo)
+			}
+
+			override fun onDataNotAvailable(e: Exception) {
+				Log.e(TAG, "onFailure: Photo failed to load. $e")
 			}
 
 		})

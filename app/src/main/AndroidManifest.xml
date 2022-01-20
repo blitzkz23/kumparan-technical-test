@@ -5,15 +5,18 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
-        android:largeHeap="true"
         android:allowBackup="true"
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.KumparanPosting">
+        android:theme="@style/Theme.KumparanPosting"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.details.photo.DetailPhotoActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.details.album.AlbumDetailActivity"
             android:exported="false" />

@@ -1,11 +1,13 @@
 package com.naufaldystd.kumparanposting.ui.details.album
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.naufaldystd.kumparanposting.R
 import com.naufaldystd.kumparanposting.data.source.remote.response.PhotoResponseItem
 import com.naufaldystd.kumparanposting.databinding.ItemPhotoBinding
+import com.naufaldystd.kumparanposting.ui.details.photo.DetailPhotoActivity
 import com.squareup.picasso.Picasso
 
 class PhotoAdapter : RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
@@ -26,6 +28,11 @@ class PhotoAdapter : RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
 			binding.apply {
 				Picasso.get().load(photo.thumbnailUrl).placeholder(R.drawable.ic_loading).into(photoThumbnail)
 				photoTitle.text = photo.title
+				itemView.setOnClickListener {
+					val intent = Intent(itemView.context, DetailPhotoActivity::class.java)
+					intent.putExtra(DetailPhotoActivity.EXTRA_PHOTO, photo.id)
+					itemView.context.startActivity(intent)
+				}
 			}
 		}
 	}

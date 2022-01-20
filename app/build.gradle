@@ -47,6 +47,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "com.squareup.picasso:picasso:$picassoVersion"
+    implementation "com.jsibbold:zoomage:$zoomageVersion"
 
     //networking
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"

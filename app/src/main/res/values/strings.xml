@@ -13,4 +13,5 @@
     <string name="thumnail_image">thumnail_image</string>
     <string name="newest_post">Postingan Terbaru</string>
     <string name="home_subheader">Halaman utama akan menampilkan postingan dari seluruh pengguna</string>
+    <string name="image_detail">image detail</string>
 </resources>

@@ -120,9 +120,30 @@ class RemoteDataSource {
 	/**
 	 * Fetch photos data by post id from endpoints /albums/id/photos and receive the responses in callback function.
 	 */
-	fun getPhotosByAlbum(albumId: Int, callback: LoadPhotosByAlbum) {
+	fun getPhotosByAlbum(albumId: Int, callback: LoadPhotosByAlbumCallback) {
 		CoroutineScope(Dispatchers.IO).launch {
 			val client = ApiConfig.getApiService().getPhotosByAlbum("albums", albumId)
+			try {
+				val response = client.awaitResponse()
+				if (response.isSuccessful) {
+					response.body()?.let {
+						callback.onDataReceived(it)
+					}
+				} else {
+					Log.d(TAG, "onResponse: ${response.message()}")
+				}
+			} catch (e: Exception) {
+				callback.onDataNotAvailable(e)
+			}
+		}
+	}
+
+	/**
+	 * Fetch user data by user id from endpoints /photos/id and receive the responses in callback function.
+	 */
+	fun getPhotoById(id: Int, callback: LoadPhotoByIdCallback) {
+		CoroutineScope(Dispatchers.IO).launch {
+			val client = ApiConfig.getApiService().getPhotoById("photos", id)
 			try {
 				val response = client.awaitResponse()
 				if (response.isSuccessful) {
@@ -143,7 +164,8 @@ class RemoteDataSource {
 	interface LoadCommentByPostCallback : ApiResultCallback<List<CommentResponseItem>>
 	interface LoadUserByIdCallback : ApiResultCallback<UserResponseItem>
 	interface LoadAlbumsByUserCallback: ApiResultCallback<List<AlbumResponseItem>>
-	interface LoadPhotosByAlbum: ApiResultCallback<List<PhotoResponseItem>>
+	interface LoadPhotosByAlbumCallback: ApiResultCallback<List<PhotoResponseItem>>
+	interface LoadPhotoByIdCallback: ApiResultCallback<PhotoResponseItem>
 
 	companion object {
 		@Volatile

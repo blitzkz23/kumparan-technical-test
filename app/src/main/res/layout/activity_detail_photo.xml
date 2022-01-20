@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_white"
-    tools:context=".ui.details.album.AlbumDetailActivity">
+    tools:context=".ui.details.photo.DetailPhotoActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -35,24 +34,36 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_end="@dimen/dimens_20dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_photo"
+    <TextView
+        android:id="@+id/photo_title"
+        style="@style/Text.Header2"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/dimens_20dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/title" />
+
+    <com.jsibbold.zoomage.ZoomageView
+        android:id="@+id/detail_photo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/dimens_20dp"
+        android:layout_marginBottom="@dimen/dimens_120dp"
+        android:contentDescription="@string/image_detail"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
-        tools:listitem="@layout/item_album" />
-
-    <ProgressBar
-        android:id="@+id/progressBar5"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/photo_title"
+        app:srcCompat="@drawable/ic_launcher_background"
+        app:zoomage_animateOnReset="true"
+        app:zoomage_autoCenter="true"
+        app:zoomage_autoResetMode="UNDER"
+        app:zoomage_doubleTapToZoom="true"
+        app:zoomage_maxScale="8"
+        app:zoomage_minScale="0.6"
+        app:zoomage_restrictBounds="false"
+        app:zoomage_translatable="true"
+        app:zoomage_zoomable="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>
