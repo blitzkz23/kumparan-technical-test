@@ -3,6 +3,8 @@ Kumparan Posting is an application that I've created in order to take part in Ku
 to give me an opporunity to take the test.
 ## Tech Stack
 Kotlin with MVVM Repository Pattern
+## API Consumed
+[{JSON} Placeholder](https://jsonplaceholder.typicode.com)
 ## Task
 - [x] List posts from all user
 - [x] Post detail page
@@ -12,4 +14,8 @@ Kotlin with MVVM Repository Pattern
 - [x] Detail of photo with zoom capability
 - [x] Published to play store (still in internal testing mode, because production takes time for google to review)
 ### Play Store Link
-https://play.google.com/store/apps/details?id=com.naufaldystd.kumparanposting
+https://play.google.com/store/apps/details?id=com.naufaldystd.kumparanposting 
+
+or in case links are not available:
+
+https://play.google.com/apps/internaltest/4699832453031174718
